@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraPapers — Immersive Wallpapers for Mobile & Desktop</title>
+  <meta name="description" content="Discover stunning mobile and desktop wallpapers powered by Pexels. Preview them instantly on interactive devices and customize your screen.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans for UI, Outfit for Headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Floating Background Ambient Glows -->
+  <div class="ambient-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow bg-glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow bg-glow-3" aria-hidden="true"></div>
+
+  <!-- Header Section -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logoGradient)" />
+            <path d="M2 17L12 22L22 17" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2 12L12 17L22 12" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <defs>
+              <linearGradient id="logoGradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00F2FE" />
+                <stop offset="1" stop-color="#4FACFE" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="logo-text">Aura<span>Papers</span></h1>
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-wrapper">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" id="search-input" placeholder="Search wallpapers (e.g. Neon, Space, Mountains...)" aria-label="Search wallpapers">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <button id="favorites-toggle" class="btn btn-secondary" aria-label="View Favorites" title="View Favorites">
+          <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="btn-text">Favorites</span>
+          <span id="favorites-count" class="badge">0</span>
+        </button>
+        
+        <button id="settings-toggle" class="btn btn-icon" aria-label="Open Settings" title="Configure Pexels API Key">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="app-main">
+    <div class="content-container">
+      
+      <!-- Top Filters / Navigation -->
+      <section class="filter-section" aria-label="Filters and controls">
+        <!-- Category chips list -->
+        <div class="categories-scroll" id="categories-container" role="tablist" aria-label="Wallpaper Categories">
+          <!-- Dynamically populated categories -->
+        </div>
+
+        <!-- Desktop vs Mobile Switcher -->
+        <div class="orientation-switch" role="radiogroup" aria-label="Filter by orientation">
+          <label class="switch-option">
+            <input type="radio" name="orientation" value="landscape" checked aria-label="Desktop Wallpapers">
+            <span class="switch-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              Desktop
+            </span>
+          </label>
+          <label class="switch-option">
+            <input type="radio" name="orientation" value="portrait" aria-label="Mobile Wallpapers">
+            <span class="switch-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              Mobile
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Active Filter Banner / Status Bar -->
+      <div id="status-banner" class="status-banner" aria-live="polite">
+        <span class="status-text" id="status-text">Displaying Curated Desktop Wallpapers</span>
+        <button id="clear-search-btn" class="btn-clear-search hidden">Clear Search</button>
+      </div>
+
+      <!-- Wallpaper Grid -->
+      <section class="gallery-section" aria-label="Wallpapers collection">
+        <!-- Loader Skeleton -->
+        <div id="loading-skeleton" class="skeleton-grid hidden" aria-hidden="true">
+          <!-- Will have multiple skeletons -->
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="wallpaper-grid" class="wallpaper-grid layout-landscape">
+          <!-- Dynamically populated cards -->
+        </div>
+
+        <!-- Empty State / Fallback Display -->
+        <div id="empty-state" class="empty-state-view hidden">
+          <div class="empty-icon" aria-hidden="true">🌌</div>
+          <h3 class="empty-title">No Wallpapers Found</h3>
+          <p class="empty-desc">We couldn't find any wallpapers matching your search. Try adjusting your query or orientation.</p>
+          <button id="empty-reset-btn" class="btn btn-primary">Reset Filters</button>
+        </div>
+
+        <!-- Infinite Scroll Sentinel -->
+        <div class="pagination-area" id="pagination-container">
+          <div id="scroll-sentinel" class="scroll-sentinel hidden">
+            <div class="spinner"></div>
+            <span>Loading more papers...</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>AuraPapers — Crafted with 💜 using the <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer">Pexels API</a>.</p>
+      <p class="footer-subtext">All images are subject to the Pexels license. API keys are stored locally on your device.</p>
+    </div>
+  </footer>
+
+  <!-- ================= DIALOGS & OVERLAYS ================= -->
+
+  <!-- Settings Dialog (API Key) -->
+  <dialog id="settings-dialog" closedby="any" aria-labelledby="settings-dialog-title">
+    <div class="dialog-header">
+      <h2 id="settings-dialog-title" class="dialog-title">Pexels API Configuration</h2>
+      <button class="dialog-close-btn" aria-label="Close Settings Dialog" data-close-dialog>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="dialog-body">
+      <p class="dialog-description">
+        By default, AuraPapers runs in <strong>Demo Mode</strong> with a curated set of stunning wallpapers. Add your personal <strong>Pexels API Key</strong> to search millions of wallpapers and fetch live trends!
+      </p>
+      
+      <form id="settings-form" method="dialog" class="settings-form">
+        <div class="form-group">
+          <label for="api-key-input">Pexels API Key</label>
+          <input type="password" id="api-key-input" placeholder="Paste your API key here..." autocomplete="off">
+          <div class="form-help">
+            Don't have an API key? You can get one for free at <a href="https://www.pexels.com/api/" target="_blank" rel="noopener noreferrer">pexels.com/api/</a>.
+          </div>
+        </div>
+
+        <div class="settings-status-indicator" id="key-status-indicator">
+          <span class="status-dot status-dot-demo"></span>
+          <span class="status-label-text">Running in Demo Mode</span>
+        </div>
+
+        <div class="dialog-actions">
+          <button type="button" id="clear-api-key-btn" class="btn btn-danger">Clear Key</button>
+          <button type="submit" id="save-api-key-btn" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Wallpaper Detail View Dialog -->
+  <dialog id="detail-dialog" closedby="any" aria-labelledby="detail-dialog-title">
+    <div class="dialog-header">
+      <h2 id="detail-dialog-title" class="dialog-title">Wallpaper Preview</h2>
+      <button class="dialog-close-btn" aria-label="Close Details Dialog" id="detail-close-btn" data-close-dialog>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="dialog-body detail-layout">
+      <!-- Left Column: Visual Mockup / Live Preview -->
+      <div class="detail-preview-container">
+        <!-- Mockup Toggle Controls -->
+        <div class="mockup-controls">
+          <span class="mockup-toggle-label">Interactive Mockup</span>
+          <button id="toggle-frame-btn" class="btn btn-small btn-secondary active">Hide Device Frame</button>
+        </div>
+
+        <!-- Phone Frame (Hidden/Shown based on device frame toggle and wallpaper type) -->
+        <div class="device-frame-wrapper" id="device-frame-wrapper">
+          
+          <!-- Desktop Display Mockup (when orientation is landscape) -->
+          <div id="desktop-mockup" class="desktop-device-mockup">
+            <div class="desktop-screen">
+              <div class="desktop-wallpaper-view" id="desktop-wallpaper-screen"></div>
+              <!-- Simulated UI Elements -->
+              <div class="desktop-taskbar" aria-hidden="true">
+                <div class="taskbar-left">
+                  <div class="taskbar-icon start-menu"></div>
+                  <div class="taskbar-icon"></div>
+                  <div class="taskbar-icon"></div>
+                </div>
+                <div class="taskbar-center-time">12:00 PM</div>
+                <div class="taskbar-right">
+                  <div class="taskbar-icon tray-icon"></div>
+                  <div class="taskbar-icon tray-icon"></div>
+                </div>
+              </div>
+            </div>
+            <div class="desktop-stand"></div>
+            <div class="desktop-base"></div>
+          </div>
+
+          <!-- Mobile Phone Mockup (when orientation is portrait) -->
+          <div id="mobile-mockup" class="mobile-device-mockup hidden">
+            <div class="phone-screen">
+              <div class="phone-wallpaper-view" id="phone-wallpaper-screen"></div>
+              <!-- Simulated Mobile OS UI overlay -->
+              <div class="phone-status-bar" aria-hidden="true">
+                <span class="phone-time">09:41</span>
+                <div class="phone-island"></div>
+                <div class="phone-icons">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.58 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                </div>
+              </div>
+              <div class="phone-lockscreen-info" aria-hidden="true">
+                <div class="phone-date">Saturday, June 27</div>
+                <div class="phone-clock">09:41</div>
+              </div>
+              <div class="phone-home-indicator" aria-hidden="true"></div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Right Column: Metadata, Palette and Download Buttons -->
+      <div class="detail-info-container">
+        <div class="wallpaper-meta">
+          <div class="meta-tags">
+            <span class="meta-tag" id="detail-orientation-tag">Desktop Wallpaper</span>
+            <span class="meta-tag tag-api-source" id="detail-source-tag">Pexels</span>
+          </div>
+          <h3 id="detail-wallpaper-name" class="detail-wallpaper-name">Aura Lightwaves</h3>
+          <p class="photographer-by">Photographed by <a href="#" id="detail-photographer-link" target="_blank" rel="noopener noreferrer">Jane Doe</a></p>
+        </div>
+
+        <hr class="separator">
+
+        <!-- Palette Preview -->
+        <div class="color-palette-section">
+          <h4 class="info-subtitle">Palette Inspiration</h4>
+          <div class="palette-colors" id="detail-palette">
+            <!-- Palette colors loaded dynamically or static aesthetic suggestions -->
+          </div>
+        </div>
+
+        <!-- Download Action -->
+        <div class="download-section">
+          <h4 class="info-subtitle">Select Download Resolution</h4>
+          
+          <div class="resolution-selector" id="resolution-selector-container">
+            <!-- Dynamic resolution items -->
+          </div>
+
+          <div class="action-buttons-group">
+            <button id="direct-download-btn" class="btn btn-primary btn-icon-text">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Selected Size
+            </button>
+            
+            <button id="detail-favorite-btn" class="btn btn-secondary btn-icon-only" aria-label="Favorite Wallpaper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+          </div>
+          <div id="download-progress-indicator" class="download-progress hidden">
+             <div class="progress-bar-track"><div id="progress-bar-fill" class="progress-bar-fill"></div></div>
+             <span id="progress-percent" class="progress-percent">Downloading...</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Core Javascript Application File -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
